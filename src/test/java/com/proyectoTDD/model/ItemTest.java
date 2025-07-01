@@ -21,4 +21,20 @@ public class ItemTest {
         assertEquals(name, item.getName());
         assertEquals(stock, item.getStock());
     }
+
+    @Test
+    public void testItemSetters() {
+        Item item = new Item();
+
+        item.setId(id);
+        item.setSize(size);
+        item.setName(name);
+        item.setStock(stock);
+
+        //Assert
+        assertEquals(id, item.getId());
+        assertEquals(size, item.getSize());
+        assertEquals(name, item.getName());
+        assertEquals(stock, item.getStock());
+    }
 }
