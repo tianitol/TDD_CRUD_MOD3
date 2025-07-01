@@ -5,13 +5,13 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ItemTest {
+    int id = 1;
+    String size = "p";
+    String name = "Taza";
+    int stock = 10;
+
     @Test
     public void testItemConstructorAndGetters() {
-        //Arrange
-        int id = 1;
-        String size = "p";
-        String name = "Taza";
-        int stock = 10;
 
         Item item = new Item(id, size, name, stock);
 
