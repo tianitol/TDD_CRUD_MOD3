@@ -4,6 +4,7 @@ import com.proyectoTDD.model.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,5 +30,15 @@ public class ItemRepositoryInMemoryTest {
         assertEquals("Plato", result.get().getName());
         assertEquals("m", result.get().getSize());
         assertEquals(10, result.get().getStock());
+    }
+
+    @Test
+    public void testFindById_NotFound() {
+
+        Optional<Item> result = repository.findById(99);
+
+        //Assert
+        assertFalse(result.isPresent());
+
     }
 }
