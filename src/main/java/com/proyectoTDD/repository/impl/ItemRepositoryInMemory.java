@@ -9,10 +9,17 @@ import java.util.Optional;
 
 public class ItemRepositoryInMemory implements ItemRepository {
 
-    private final Map<Integer, Item> storage = new HashMap<>();
+    private final Map<Integer, Item> storage;
+
+    public ItemRepositoryInMemory() {
+        this.storage = new HashMap<>();
+    }
 
     @Override
     public Item save(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException("El ítem no puede ser null");
+        }
         storage.put(item.getId(), item);
         return item;
     }
