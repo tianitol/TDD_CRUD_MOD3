@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ItemTest {
     @Test
     public void testItemConstructorAndGetters() {
+        //Arrange
         int id = 1;
         String size = "p";
         String name = "Taza";
