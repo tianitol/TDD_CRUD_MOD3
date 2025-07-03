@@ -32,6 +32,9 @@ public class ItemRepositoryInMemory implements ItemRepository {
 
     @Override
     public void deleteById(int id) {
+        if(!storage.containsKey(id)) {
+            throw new IllegalArgumentException("No existe un ítem con ID: " + id);
+        }
         storage.remove(id);
     }
 

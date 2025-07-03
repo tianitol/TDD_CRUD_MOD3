@@ -55,4 +55,17 @@ public class ItemRepositoryInMemoryTest {
         assertFalse(result.isPresent());
 
     }
+
+    @Test
+    public void testDeleteById_WhenItemDoesNotExist_ShouldThrowException() {
+
+        int nonexistentId = 999;
+
+        //Act y Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            repository.deleteById(nonexistentId);
+        });
+
+        assertEquals("No existe un ítem con ID: 999", exception.getMessage());
+    }
 }
