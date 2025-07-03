@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class ItemRepositoryInMemory implements ItemRepository {
 
+    //Almacenar en memoria, simulando BD
     private final Map<Integer, Item> storage;
 
     public ItemRepositoryInMemory() {

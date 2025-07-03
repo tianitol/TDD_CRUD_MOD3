@@ -41,4 +41,18 @@ public class ItemRepositoryInMemoryTest {
         assertFalse(result.isPresent());
 
     }
+
+    @Test
+    public void testDeleteById_RemovesItem() {
+
+        Item item = new Item(1, "m", "Plato", 10);
+        repository.save(item);
+
+        repository.deleteById(1);
+        Optional<Item> result = repository.findById(1);
+
+        //Assert
+        assertFalse(result.isPresent());
+
+    }
 }
