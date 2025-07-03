@@ -30,4 +30,9 @@ public class ItemRepositoryInMemory implements ItemRepository {
         return Optional.ofNullable(storage.get(id));
     }
 
+    @Override
+    public void deleteById(int id) {
+        storage.remove(id);
+    }
+
 }
