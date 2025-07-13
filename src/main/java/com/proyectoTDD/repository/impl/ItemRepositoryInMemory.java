@@ -30,7 +30,8 @@ public class ItemRepositoryInMemory implements ItemRepository {
 
     @Override
     public List<Item> findAll() {
-        return new ArrayList<>(storage.values());
+        List<Item> items = new ArrayList<>(storage.values());
+        return Collections.unmodifiableList(items);
     }
 
     @Override
