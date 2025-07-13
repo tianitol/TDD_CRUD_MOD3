@@ -3,6 +3,7 @@ package com.proyectoTDD.service;
 
 import com.proyectoTDD.model.Item;
 import com.proyectoTDD.repository.ItemRepository;
+import com.proyectoTDD.service.validation.ItemValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +14,14 @@ import static org.mockito.Mockito.*;
 
     private ItemRepository itemRepository;
     private ItemService itemService;
+    private ItemValidator itemValidator;
 
 
     @BeforeEach
     public void setUp() {
         itemRepository = mock(ItemRepository.class);
-        itemService = new ItemService(itemRepository);
+        itemValidator = mock(ItemValidator.class);
+        itemService = new ItemService(itemRepository, itemValidator);
     }
 
     //Test para Crear un item (Create)
