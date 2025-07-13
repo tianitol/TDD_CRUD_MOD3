@@ -4,7 +4,6 @@ import com.proyectoTDD.model.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,10 +61,25 @@ public class ItemRepositoryInMemoryTest {
         int nonexistentId = 999;
 
         //Act y Assert
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            repository.deleteById(nonexistentId);
-        });
+        Exception exception;
+        exception = assertThrows(IllegalArgumentException.class, () -> repository.deleteById(nonexistentId));
 
         assertEquals("No existe un ítem con ID: 999", exception.getMessage());
+    }
+
+    @Test
+    public void testUpdatedItem_ShouldReplaceExistingItem() {
+        //Se instancia el item
+        Item original = new Item(1, "m", "Cuchara", 15);
+
+        //Act
+        repository.update(updated);
+        Optional<Item> result = repository.findById(1);
+
+        //Assert
+        assertTrue(result.isPresent());
+        assertEquals("m", result.get().getSize());
+        assertEquals("Cuchara", result.get().getName());
+        assertEquals(15, result.get().getStock());
     }
 }
