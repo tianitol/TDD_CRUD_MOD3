@@ -71,15 +71,17 @@ public class ItemRepositoryInMemoryTest {
     public void testUpdatedItem_ShouldReplaceExistingItem() {
         //Se instancia el item
         Item original = new Item(1, "m", "Cuchara", 15);
+        repository.save(original);
 
+        Item updated = new Item(1, "g", "Cuchara", 20);
         //Act
         repository.update(updated);
         Optional<Item> result = repository.findById(1);
 
         //Assert
         assertTrue(result.isPresent());
-        assertEquals("m", result.get().getSize());
+        assertEquals("g", result.get().getSize());
         assertEquals("Cuchara", result.get().getName());
-        assertEquals(15, result.get().getStock());
+        assertEquals(20, result.get().getStock());
     }
 }

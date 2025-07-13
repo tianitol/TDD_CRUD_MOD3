@@ -38,4 +38,10 @@ public class ItemRepositoryInMemory implements ItemRepository {
         storage.remove(id);
     }
 
+    @Override
+    public Item update(Item item)   {
+        storage.put(item.getId(), item);
+        return item;
+    }
+
 }
