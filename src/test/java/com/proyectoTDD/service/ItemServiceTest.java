@@ -1,6 +1,6 @@
 
 package com.proyectoTDD.service;
-/*
+
 import com.proyectoTDD.model.Item;
 import com.proyectoTDD.repository.ItemRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,11 +37,8 @@ import static org.mockito.Mockito.*;
         assertEquals("Taza", result.getName());
         assertEquals(10, result.getStock());
         assertEquals("p", result.getSize());
-        verify(itemRepository).save(item);
+        verify(itemRepository, times(1)).save(item);
     }
 
 
 }
-
-
- */
