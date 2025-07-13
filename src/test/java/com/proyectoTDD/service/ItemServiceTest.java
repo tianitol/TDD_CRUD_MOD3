@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
     public void testCreateItem_shouldReturnSavedItem() {
         //Instanciar nuevo item
         Item item = new Item(1, "p", "Taza", 10);
-        when(itemRepository.save(item).thenReturn(item));
+        when(itemRepository.save(item)).thenReturn(item);
 
         //Crear el nuevo item
         Item result = itemService.createItem(item);
