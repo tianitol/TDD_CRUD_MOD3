@@ -84,4 +84,18 @@ public class ItemRepositoryInMemoryTest {
         assertEquals("Cuchara", result.get().getName());
         assertEquals(20, result.get().getStock());
     }
+
+    @Test
+    public void testUpdateItem_WhenItemDoesNotExist_ShouldThrowException()  {
+        //Instanciar el item
+        Item item = new Item(99, "s", "Taza de té", 5);
+
+        //Act
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            repository.update(item);
+        });
+
+        //Assert
+        assertEquals("No existe un item con ID: 99", exception.getMessage());
+    }
 }
