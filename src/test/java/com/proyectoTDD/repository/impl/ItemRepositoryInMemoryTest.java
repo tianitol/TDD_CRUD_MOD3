@@ -4,6 +4,7 @@ import com.proyectoTDD.model.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,6 +40,23 @@ public class ItemRepositoryInMemoryTest {
         //Assert
         assertFalse(result.isPresent());
 
+    }
+
+    @Test
+    public void testFindAll_ShouldReturnAllItems()  {
+        //Instanciar items
+        Item item1 = new Item(1, "m", "Taza", 10);
+        Item item2 = new Item(2, "g", "Cuchara", 5);
+        repository.save(item1);
+        repository.save(item2);
+
+        //Act
+        List<Item> items = repository.findAll();
+
+        //Assert
+        assertEquals(2, items.size());
+        assertTrue(items.contains(item1));
+        assertTrue(items.contains(item2));
     }
 
     @Test
