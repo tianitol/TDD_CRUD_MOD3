@@ -14,13 +14,12 @@ import static org.mockito.Mockito.*;
 
     private ItemRepository itemRepository;
     private ItemService itemService;
-    private ItemValidator itemValidator;
 
 
-    @BeforeEach
+     @BeforeEach
     public void setUp() {
         itemRepository = mock(ItemRepository.class);
-        itemValidator = mock(ItemValidator.class);
+         ItemValidator itemValidator = mock(ItemValidator.class);
         itemService = new ItemService(itemRepository, itemValidator);
     }
 
