@@ -40,13 +40,17 @@ public class ItemRepositoryInMemory implements ItemRepository {
 
     @Override
     public Item update(Item item)   {
-        if(!storage.containsKey(item.getId()))  {
-            throw new IllegalArgumentException("No existe un item con ID: " + item.getId());
-        }
+        ensureExists(item.getId());
 
         //Utilización de .replace() en vez de .put() para verificar si el id existe antes de actualizar el item
         storage.replace(item.getId(), item);
         return item;
+    }
+
+    private void ensureExists(int id)   {
+        if(!storage.containsKey(id))  {
+            throw new IllegalArgumentException("No existe un item con ID: " + id);
+        }
     }
 
 }
