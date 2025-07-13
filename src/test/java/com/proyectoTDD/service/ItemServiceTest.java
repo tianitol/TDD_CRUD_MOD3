@@ -61,5 +61,15 @@ import static org.mockito.Mockito.*;
         verify(itemRepository, times(1)).findById(1);
     }
 
+    @Test
+     public void testGetItemById_shouldThrowExceptionIfNotFound()    {
+         //instanciar?
+        when(itemRepository.findById(99)).thenReturn(Optional.empty());
+
+        //Act and Assert
+        assertThrows(ItemNotFoundException.class, () -> itemService.getItemById());
+        verify(itemRepository, times(1)).findById(99);
+    }
+
 
 }
