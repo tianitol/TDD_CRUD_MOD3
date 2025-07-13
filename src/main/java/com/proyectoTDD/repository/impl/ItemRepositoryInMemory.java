@@ -3,9 +3,7 @@ package com.proyectoTDD.repository.impl;
 import com.proyectoTDD.model.Item;
 import com.proyectoTDD.repository.ItemRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ItemRepositoryInMemory implements ItemRepository {
 
@@ -28,6 +26,11 @@ public class ItemRepositoryInMemory implements ItemRepository {
     @Override
     public Optional<Item> findById(int id) {
         return Optional.ofNullable(storage.get(id));
+    }
+
+    @Override
+    public List<Item> findAll() {
+        return new ArrayList<>(storage.values());
     }
 
     @Override
