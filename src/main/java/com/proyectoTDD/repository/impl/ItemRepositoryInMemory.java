@@ -40,7 +40,8 @@ public class ItemRepositoryInMemory implements ItemRepository {
 
     @Override
     public Item update(Item item)   {
-        storage.put(item.getId(), item);
+        //Utilización de .replace() en vez de .put() para verificar si el id existe antes de actualizar el item
+        storage.replace(item.getId(), item);
         return item;
     }
 
