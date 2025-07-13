@@ -19,10 +19,14 @@ public class ItemService {
     }
 
     public Item getItemById(int id) {
+        return validateItemExists(id);
+    }
+
+    public Item validateItemExists(int id)  {
         return itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Item con ID " + id + " no encontrado."));
     }
 
-    public class ItemNotFoundException extends RuntimeException {
+    public static class ItemNotFoundException extends RuntimeException {
         public ItemNotFoundException(String message)    {
             super(message);
         }
