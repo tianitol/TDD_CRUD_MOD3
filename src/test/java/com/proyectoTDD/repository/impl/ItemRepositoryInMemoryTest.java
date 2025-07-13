@@ -64,7 +64,7 @@ public class ItemRepositoryInMemoryTest {
         Exception exception;
         exception = assertThrows(IllegalArgumentException.class, () -> repository.deleteById(nonexistentId));
 
-        assertEquals("No existe un ítem con ID: 999", exception.getMessage());
+        assertEquals("No existe un item con ID: 999", exception.getMessage());
     }
 
     @Test
