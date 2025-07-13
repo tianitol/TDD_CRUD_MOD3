@@ -22,6 +22,11 @@ public class ItemService {
         return validateItemExists(id);
     }
 
+    public void deleteItemById(int id) {
+        validateItemExists(id);
+        itemRepository.deleteById(id);
+    }
+
     public Item validateItemExists(int id)  {
         return itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Item con ID " + id + " no encontrado."));
     }
