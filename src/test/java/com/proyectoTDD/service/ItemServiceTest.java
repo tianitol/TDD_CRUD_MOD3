@@ -7,6 +7,8 @@ import com.proyectoTDD.service.validation.ItemValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -40,6 +42,23 @@ import static org.mockito.Mockito.*;
         assertEquals(10, result.getStock());
         assertEquals("p", result.getSize());
         verify(itemRepository, times(1)).save(item);
+    }
+
+    @Test
+     public void testGetItemById_shouldReturnItemIfExists() {
+         //Instanciar
+        Item item = new Item(1, "p", "Taza", 10);
+
+        when(itemRepository.findById(1)).thenReturn(Optional.of(item));
+
+        //Act
+        Item result = itemService.getItemById(1);
+
+        //Assert
+        assertNotNull(result.getName());
+        assertEquals(10, result.getStock());
+        assertEquals("p", result.getSize());
+        verify(itemRepository, times(1)).findById(1);
     }
 
 
