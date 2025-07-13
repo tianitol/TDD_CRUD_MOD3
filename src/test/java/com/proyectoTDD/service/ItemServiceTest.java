@@ -71,5 +71,30 @@ import static org.mockito.Mockito.*;
         verify(itemRepository, times(1)).findById(99);
     }
 
+    @Test
+    public void testDeleteItemById_shouldDeleteIfExists()   {
+         //Instanciar
+        int id = 1;
+        Item item = new Item(id, "p", "Taza", 10);
 
-}
+        when(itemRepository.findById(id)).thenReturn(Optional.of(item));
+
+        //Act
+        itemService.deleteItemById(id);
+
+        //Assert
+        verify(itemRepository, times(1)).deleteById(id);
+    }
+
+     @Test
+     public void testDeleteItemById_shouldThrowExceptionIfNotFound() {
+         // Arrange
+         int id = 99;
+         when(itemRepository.findById(id)).thenReturn(Optional.empty());
+
+         // Act & Assert
+         assertThrows(ItemService.ItemNotFoundException.class, () -> itemService.deleteItemById(id));
+         verify(itemRepository, never()).deleteById(anyInt());
+     }
+
+ }
