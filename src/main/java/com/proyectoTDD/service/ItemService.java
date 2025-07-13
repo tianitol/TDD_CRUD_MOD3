@@ -17,4 +17,14 @@ public class ItemService {
         itemValidator.validate(item);
         return itemRepository.save(item);
     }
+
+    public Item getItemById(int id) {
+        return itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Item con ID " + id + " no encontrado."));
+    }
+
+    public class ItemNotFoundException extends RuntimeException {
+        public ItemNotFoundException(String message)    {
+            super(message);
+        }
+    }
 }
