@@ -1,6 +1,7 @@
 
 package com.proyectoTDD.service;
 
+import com.proyectoTDD.exception.ItemNotFoundException;
 import com.proyectoTDD.model.Item;
 import com.proyectoTDD.repository.ItemRepository;
 import com.proyectoTDD.service.validation.ItemValidator;
@@ -67,7 +68,7 @@ import static org.mockito.Mockito.*;
         when(itemRepository.findById(99)).thenReturn(Optional.empty());
 
         //Act and Assert
-        assertThrows(ItemService.ItemNotFoundException.class, () -> itemService.getItemById(99));
+        assertThrows(ItemNotFoundException.class, () -> itemService.getItemById(99));
         verify(itemRepository, times(1)).findById(99);
     }
 
@@ -93,7 +94,7 @@ import static org.mockito.Mockito.*;
          when(itemRepository.findById(id)).thenReturn(Optional.empty());
 
          // Act & Assert
-         assertThrows(ItemService.ItemNotFoundException.class, () -> itemService.deleteItemById(id));
+         assertThrows(ItemNotFoundException.class, () -> itemService.deleteItemById(id));
          verify(itemRepository, never()).deleteById(anyInt());
      }
 
