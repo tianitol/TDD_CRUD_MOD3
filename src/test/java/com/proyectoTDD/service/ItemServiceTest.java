@@ -98,4 +98,40 @@ import static org.mockito.Mockito.*;
          verify(itemRepository, never()).deleteById(anyInt());
      }
 
+     @Test
+     public void testUpdateItemById_shouldUpdateAndReturnItem() {
+         // Arrange
+         int id = 1;
+         Item existingItem = new Item(id, "p", "Taza", 10);
+         Item updatedItem = new Item(id, "m", "Taza Grande", 20);
+
+         when(itemRepository.findById(id)).thenReturn(Optional.of(existingItem));
+         when(itemRepository.save(updatedItem)).thenReturn(updatedItem);
+
+         // Act
+         Item result = itemService.updateItemById(id, updatedItem);
+
+         // Assert
+         assertNotNull(result);
+         assertEquals("Taza Grande", result.getName());
+         assertEquals("m", result.getSize());
+         assertEquals(20, result.getStock());
+         verify(itemRepository).findById(id);
+         verify(itemRepository).save(updatedItem);
+     }
+
+     @Test
+     public void testUpdateItemById_shouldThrowExceptionIfItemNotFound() {
+         // Arrange
+         int id = 99;
+         Item updatedItem = new Item(id, "m", "Taza Grande", 20);
+         when(itemRepository.findById(id)).thenReturn(Optional.empty());
+
+         // Act & Assert
+         assertThrows(ItemNotFoundException.class, () -> itemService.updateItemById(id, updatedItem));
+         verify(itemRepository).findById(id);
+         verify(itemRepository, never()).save(any());
+     }
+
+
  }
