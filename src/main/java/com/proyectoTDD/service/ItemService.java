@@ -1,5 +1,6 @@
 package com.proyectoTDD.service;
 
+import com.proyectoTDD.exception.ItemNotFoundException;
 import com.proyectoTDD.model.Item;
 import com.proyectoTDD.repository.ItemRepository;
 import com.proyectoTDD.service.validation.ItemExistenceValidator;
@@ -29,4 +30,11 @@ public class ItemService {
         itemExistenceValidator.validate(id);
         itemRepository.deleteById(id);
     }
+
+    public Item updateItemById(int id, Item updatedItem) {
+        itemRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException("No existe un item con ID: " + id));
+        return itemRepository.save(updatedItem);
+    }
+
 }
